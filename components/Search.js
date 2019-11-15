@@ -1,13 +1,20 @@
-import React from 'react'
-import { View, Image, TextInput, StyleSheet, Dimensions } from 'react-native'
+import React,{useState} from 'react'
+import { View, Image, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 
 const { width } = Dimensions.get('window')
 
 const Search = props => {
+    const [search, setSearch] = useState('')
+    const handleSearch = () => {
+        props.onSearch(search)
+    }
+
     return(
         <View style={styles.container}>
-            <Image source={require('../assets/icons/search.png')} style={styles.iconSearch} />
-            <TextInput placeholder="Search here.." style={styles.textInputSearch} />
+            <TouchableOpacity onPress={handleSearch}>
+                <Image source={require('../assets/icons/search.png')} style={styles.iconSearch} />
+            </TouchableOpacity>
+            <TextInput placeholder="Search here.." style={styles.textInputSearch} onChangeText={text => setSearch(text)} onSubmitEditing={handleSearch} returnKeyType="search" />
         </View>
     )
 }
