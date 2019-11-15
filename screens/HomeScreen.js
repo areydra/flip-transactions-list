@@ -54,6 +54,7 @@ const HomeScreen = () => {
           keyExtractor={item => item.id.id}
           data={transactions}
           renderItem={transaction => <Card transaction={transaction.item} />}
+          showsVerticalScrollIndicator={false}
         />
       ) : (
         <View style={styles.center}>
